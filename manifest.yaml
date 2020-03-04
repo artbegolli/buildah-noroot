@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oci-buildah-deployment
+  labels:
+    app: oci-buildah
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oci-buildah
+  template:
+    metadata:
+      labels:
+        app: oci-buildah
+    spec:
+      containers:
+      - name: oci-buildah
+        image: abegolli/ocib-buildah:latest 
+        command: ["ocictl build"]
+        ports:
+        - containerPort: 80

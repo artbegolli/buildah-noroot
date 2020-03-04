@@ -1,0 +1,21 @@
+build:
+  steps:
+    - metadata:
+        name: test-build
+      tag: 0.0.1
+      stages:
+        - metadata:
+            name: stage-1
+          base:
+            image: golang:latest
+          cmd:
+            - docker:
+                inline:
+                  - RUN mkdir /app
+                  - ADD . /app/
+                  - WORKDIR /app
+                  - RUN go build -o main .
+      context:
+        localContext:
+          contextPath: .
+daemon: false
