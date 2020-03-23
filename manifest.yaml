@@ -1,14 +1,11 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: Job
 metadata:
-  name: oci-buildah-deployment
+  name: oci-buildah-job
   labels:
-    app: oci-buildah
+    jobgroup: oci-buildah-job
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: oci-buildah
+  completions: 1
   template:
     metadata:
       labels:
@@ -17,6 +14,5 @@ spec:
       containers:
       - name: oci-buildah
         image: abegolli/ocib-buildah:latest 
-        command: ["ocictl build"]
-        ports:
-        - containerPort: 80
+        command: ["ocictl"]
+      restartPolicy: OnFailure
