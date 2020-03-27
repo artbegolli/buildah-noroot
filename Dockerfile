@@ -1,2 +1,3 @@
-FROM ocibuilder/ocictl:0.1.2-beta
+FROM abegolli/ocibuilder:1.0.0-beta
+WORKDIR /usr/games
 COPY . .
