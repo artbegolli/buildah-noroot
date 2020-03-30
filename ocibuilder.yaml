@@ -1,4 +1,5 @@
 build:
+  storageDriver: vfs
   steps:
     - metadata:
         name: test-build
